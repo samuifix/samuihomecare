@@ -1,0 +1,286 @@
+export const site = {
+  name: "Samui Home Care",
+  tagline: "Full-service home repair & maintenance on Koh Samui",
+  phone: "063-841-9593",
+  phoneRaw: "0638419593",
+  whatsapp: "https://wa.me/66638419593",
+  line: "https://line.me/ti/p/samuifix",
+  lineId: "samuifix",
+  email: "hello@samuihomecare.com",
+  address: "64/33 Moo 2, Mae Nam, Koh Samui, Surat Thani 84330",
+  addressNote: "Between Mae Nam Soi 2-3, roadside",
+  areas: "Chaweng, Bophut, Lamai, Maenam, Choeng Mon",
+  hours: "24 hours, every day",
+} as const;
+
+export const stats = [
+  { value: "1000+", label: "Jobs completed" },
+  { value: "5+", label: "Years experience" },
+  { value: "24/7", label: "Service available" },
+] as const;
+
+export const services = [
+  {
+    id: "electrical",
+    title: "Electrical",
+    short: "Wiring, breakers, all electrical systems",
+    description: "Electrical repairs, new wiring, breaker installation, all types of electrical systems.",
+    points: [
+      "Electrical system inspection",
+      "Breaker installation",
+      "New wiring",
+      "Power outage & flickering fixes",
+    ],
+    icon: "⚡",
+    href: "#services",
+  },
+  {
+    id: "plumbing",
+    title: "Plumbing",
+    short: "Pipes, drainage, fixtures, all water systems",
+    description: "Pipe repair, drainage, fixture installation, all types of water systems.",
+    points: [
+      "Drinking water systems",
+      "Faucet repair",
+      "Fixture installation",
+      "Leak & pipe repair",
+    ],
+    icon: "💧",
+    href: "#services",
+  },
+  {
+    id: "aircon",
+    title: "Air Conditioning",
+    short: "Repair, cleaning, new installation",
+    description: "AC repair, cleaning, new installation — full service.",
+    points: [
+      "Refrigerant top-up",
+      "New AC installation",
+      "Cleaning & maintenance",
+      "AC not cooling repair",
+    ],
+    icon: "❄️",
+    href: "#services",
+  },
+  {
+    id: "construction",
+    title: "Construction",
+    short: "Extensions, repairs, wood, steel, painting",
+    description: "Home extensions, repairs, woodwork, steelwork, painting.",
+    points: [
+      "Wood & steel work",
+      "Painting",
+      "Roof repair",
+      "Room extensions",
+    ],
+    icon: "🔨",
+    href: "#services",
+  },
+  {
+    id: "renovation",
+    title: "Renovation & Interior",
+    short: "Design, decor, extensions with architects",
+    description: "Design, decor, extensions with professional architects and craftsmen.",
+    points: [
+      "Weekly TH/EN progress reports",
+      "Built-in & interior design",
+      "Kitchen & bathroom upgrades",
+      "Full house renovation",
+    ],
+    icon: "✨",
+    href: "#services",
+  },
+  {
+    id: "cleaning",
+    title: "Cleaning",
+    short: "Home, office, floors, windows",
+    description: "Home and office cleaning, floor and window cleaning.",
+    points: [
+      "One-time or monthly service",
+      "Office cleaning",
+      "Window cleaning",
+      "House cleaning",
+    ],
+    icon: "🧹",
+    href: "#services",
+  },
+  {
+    id: "emergency",
+    title: "Emergency Service",
+    short: "24-hour urgent repairs",
+    description: "24-hour service for urgent and emergency jobs.",
+    points: [
+      "AC breakdown",
+      "Power or water outage",
+      "Urgent repairs",
+      "24-hour availability",
+    ],
+    icon: "🚨",
+    href: "#contact",
+    cta: "Call now",
+  },
+  {
+    id: "welding",
+    title: "Welding",
+    short: "Steel, structures, doors, windows, fences",
+    description: "Steel welding, structural work, doors, windows, fences.",
+    points: [
+      "Welding repairs",
+      "Steel fences",
+      "Steel doors & windows",
+      "Structural welding",
+    ],
+    icon: "🔧",
+    href: "#services",
+  },
+  {
+    id: "painting",
+    title: "Painting",
+    short: "House, building, walls, fences",
+    description: "House painting, building, walls, fences — full service.",
+    points: [
+      "Surface preparation",
+      "Fence, door & window painting",
+      "Interior & exterior walls",
+      "Full house painting",
+    ],
+    icon: "🎨",
+    href: "#services",
+  },
+  {
+    id: "toilet-replacement",
+    title: "Toilet replacement & installation",
+    short: "New toilet supply, removal of old unit, and professional installation on Koh Samui",
+    description: "Full toilet replacement and installation service for homes and villas on Koh Samui.",
+    points: [
+      "Supply of quality toilet units (standard & wall-hung)",
+      "Removal and disposal of old toilet",
+      "Sealing, connection to waste pipe, and testing",
+      "Clean finish and leak-free guarantee",
+    ],
+    icon: "🚽",
+    href: "#services",
+  },
+  {
+    id: "tree-cutting",
+    title: "Tree cutting & removal",
+    short: "Safe tree trimming, pruning, and removal for villas and land on Koh Samui",
+    description: "Professional tree cutting, trimming, and removal service on Koh Samui.",
+    points: [
+      "Tree trimming and pruning",
+      "Full tree removal when required",
+      "Branch and debris disposal",
+      "Safe work near buildings and power lines",
+    ],
+    icon: "🌳",
+    href: "#services",
+  },
+  {
+    id: "garden-care",
+    title: "Garden care & maintenance",
+    short: "Regular garden upkeep, lawn mowing, and landscaping support on Koh Samui",
+    description: "Garden care and maintenance services for villas and homes on Koh Samui.",
+    points: [
+      "Lawn mowing and edging",
+      "Weeding and basic landscaping",
+      "Hedge trimming",
+      "One-off or regular maintenance plans",
+    ],
+    icon: "🌿",
+    href: "#services",
+  },
+] as const;
+
+export const whyUs = [
+  {
+    title: "Professional craftsmen",
+    description: "Trained technicians with over 5 years of experience and certified standards.",
+  },
+  {
+    title: "24/7 service",
+    description: "Available every day, around the clock, including night-time emergencies.",
+  },
+  {
+    title: "Island-wide coverage",
+    description: "We serve all of Koh Samui — Chaweng, Bophut, Lamai, Maenam and more.",
+  },
+  {
+    title: "Transparent pricing",
+    description: "Clear quotes with no hidden costs. Free estimates before work starts.",
+  },
+  {
+    title: "Work guarantee",
+    description: "Every job is guaranteed with after-sales support and free repair if issues arise.",
+  },
+  {
+    title: "Happy customers",
+    description: "Over 1,000 customers trust us with many positive reviews.",
+  },
+] as const;
+
+export const reviews = [
+  {
+    name: "David Johnson",
+    category: "Construction",
+    rating: 5,
+    text: "Samui Home Care was fast and very professional. Our new kitchen looks exactly as designed.",
+    date: "19 Nov 2025",
+  },
+  {
+    name: "Lisa Chen",
+    category: "Electrical",
+    rating: 5,
+    text: "Highly skilled technicians. The electrical system is safe and works perfectly with no issues.",
+    date: "19 Nov 2025",
+  },
+  {
+    name: "Sarah Williams",
+    category: "Construction",
+    rating: 5,
+    text: "Polite team and great attention to detail. Our bathroom looks much more modern now.",
+    date: "18 Nov 2025",
+  },
+  {
+    name: "James Wilson",
+    category: "Plumbing",
+    rating: 5,
+    text: "Fixed our water pressure and leak quickly. Fair price and tidy work.",
+    date: "17 Nov 2025",
+  },
+] as const;
+
+export const portfolio = [
+  {
+    id: 1,
+    title: "Spa pool structure & full swimming pool system — Private villa, Koh Samui",
+    excerpt: "High-standard spa pool construction on Koh Samui. Solid structure, excellent waterproofing, professional team with over 10 years of experience.",
+    category: "Pool & structure",
+  },
+  {
+    id: 2,
+    title: "Steel roof installation — Koh Samui",
+    excerpt: "Steel roof structure and home repair in Koh Samui. Over 10 years of experience, 3,000+ homes serviced. Durable and resistant to island conditions.",
+    category: "Roofing",
+  },
+  {
+    id: 3,
+    title: "Wood stair handrail with hidden LED — Koh Samui",
+    excerpt: "Solid wood handrails with hidden LED lighting, modern design. Expert craftsmen with over 10 years of experience.",
+    category: "Interior",
+  },
+  {
+    id: 4,
+    title: "Outdoor shower stone wall — Jigsaw tile installation",
+    excerpt: "Natural stone feature wall for outdoor shower by the pool. Beautiful, weather-resistant work by our Koh Samui team.",
+    category: "Outdoor",
+  },
+] as const;
+
+export const categories = [
+  { name: "Floor & wall", count: 3, href: "/services/construction/" },
+  { name: "Doors / Windows / Fences / Stairs", count: 23, href: "/services/welding/" },
+  { name: "Roof & ceiling", count: 1, href: "/services/construction/" },
+  { name: "Bathroom & fixtures", count: 17, href: "/services/plumbing/" },
+  { name: "Solar — Koh Samui", count: 20, href: "/services/electrical/" },
+  { name: "Home maintenance — Koh Samui", count: 51, href: "/services/cleaning/" },
+] as const;
