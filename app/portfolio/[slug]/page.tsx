@@ -4,10 +4,18 @@ import Link from "next/link";
 import { getPortfolioBySlug, getPortfolioSlugs } from "@/lib/sanity";
 import { BASE_URL, SITE_NAME } from "@/lib/constants";
 
-export async function generateStaticParams() {
-  const slugs = await getPortfolioSlugs();
-  return slugs.map((slug) => ({ slug }));
+// Must be first export — required by Next.js for output: "export"
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  try {
+    const slugs = await getPortfolioSlugs();
+    const list = Array.isArray(slugs) ? slugs.filter((s): s is string => typeof s === "string" && s.length > 0) : [];
+    return list.map((slug) => ({ slug }));
+  } catch {
+    return [];
+  }
 }
+
+export const dynamic = "force-static";
 
 export async function generateMetadata({
   params,
