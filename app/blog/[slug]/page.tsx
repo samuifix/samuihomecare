@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPostBySlug, getPostSlugs } from "@/lib/sanity";
+import { getPostBySlug } from "@/lib/sanity";
 import { PortableText } from "@/components/PortableText";
 import { BASE_URL, SITE_NAME } from "@/lib/constants";
 
-export async function generateStaticParams() {
-  const slugs = await getPostSlugs();
-  return slugs.map((slug) => ({ slug }));
+const FALLBACK_SLUG = "__no-posts";
+
+// Must be first export — required by Next.js for output: "export"
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  try {
+    const { getPostSlugs } = await import("@/lib/sanity");
+    const slugs = await getPostSlugs();
+    const list = Array.isArray(slugs) ? slugs.filter((s): s is string => typeof s === "string" && s.length > 0) : [];
+    if (list.length === 0) return [{ slug: FALLBACK_SLUG }];
+    return list.map((slug) => ({ slug }));
+  } catch {
+    return [{ slug: FALLBACK_SLUG }];
+  }
 }
+
+export const dynamic = "force-static";
 
 export async function generateMetadata({
   params,
@@ -83,8 +95,8 @@ function BlogPostJsonLd({
 
 export default async function BlogSinglePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === FALLBACK_SLUG) notFound();
   const post = await getPostBySlug(slug);
-
   if (!post) notFound();
 
   const dateStr = post.publishedAt
