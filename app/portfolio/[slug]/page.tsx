@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPortfolioBySlug, getPortfolioSlugs } from "@/lib/sanity";
+import { getPortfolioBySlug } from "@/lib/sanity";
 import { BASE_URL, SITE_NAME } from "@/lib/constants";
 
 // Must be first export — required by Next.js for output: "export"
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   try {
+    const { getPortfolioSlugs } = await import("@/lib/sanity");
     const slugs = await getPortfolioSlugs();
     const list = Array.isArray(slugs) ? slugs.filter((s): s is string => typeof s === "string" && s.length > 0) : [];
     return list.map((slug) => ({ slug }));
