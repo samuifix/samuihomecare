@@ -1,6 +1,6 @@
 # คู่มือ Build และ Deploy (สำหรับมือใหม่)
 
-ถ้า Vercel แจ้งว่า **"Page /blog/[slug] is missing generateStaticParams()"** ให้ทำตามขั้นตอนด้านล่างทีละขั้น
+ถ้า Vercel แจ้งว่า **"Page /blog/[slug] หรือ /portfolio/[slug] is missing generateStaticParams()"** ให้ทำตามขั้นตอนด้านล่างทีละขั้น
 
 ---
 
@@ -62,7 +62,7 @@ git add .
 **5.2 สร้าง commit:**
 
 ```powershell
-git commit -m "Fix blog generateStaticParams for static export"
+git commit -m "Fix generateStaticParams for static export"
 ```
 
 **5.3 ส่งขึ้น GitHub:**
@@ -104,9 +104,10 @@ git push
 2. ไปที่แท็บ **Deployments**  
 3. ที่ deployment ล่าสุด (แถวบนสุด) คลิก **⋯** (จุดสามจุด)  
 4. เลือก **Redeploy**  
-5. เลือก **Redeploy** อีกครั้ง (หรือ **Redeploy without cache** ถ้าอยากให้ build ใหม่ทั้งหมด)  
+5. เลือก **Redeploy** อีกครั้ง  
+   - **ถ้ายัง error เรื่อง generateStaticParams:** เลือก **Redeploy without cache** (ล้าง cache แล้ว build ใหม่ทั้งหมด)  
 6. รอจนสถานะเป็น **Ready**  
-7. เปิด URL ของเว็บตรวจดูว่าหน้า blog เปิดได้
+7. เปิด URL ของเว็บตรวจดูว่าหน้า blog / portfolio เปิดได้
 
 ---
 
@@ -118,5 +119,10 @@ git push
 4. รัน `git add .` → `git commit -m "..."` → `git push`  
 5. ตั้งค่า Environment Variables บน Vercel  
 6. Redeploy บน Vercel  
+
+**ถ้ายัง error อยู่ ให้เช็ค:**
+
+- ว่าได้ **push โค้ดล่าสุด** ขึ้น GitHub จริงหรือยัง (ดูใน GitHub ว่าไฟล์ `app/portfolio/[slug]/page.tsx` มีฟังก์ชัน `generateStaticParams` อยู่หรือไม่)
+- ลอง **Redeploy without cache** ใน Vercel (Deployments → ⋯ → Redeploy → เลือกแบบล้าง cache)
 
 ถ้าทำครบแล้วแต่ Vercel ยัง error อยู่ ให้ copy ข้อความ error ทั้งก้อนจาก **Build Logs** ใน Vercel ส่งมา จะช่วยไล่ต่อให้ได้ครับ
