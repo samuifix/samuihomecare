@@ -58,7 +58,6 @@ function PortfolioJsonLd({
   imageUrl,
   galleryUrls,
   location,
-  datePublished,
 }: {
   slug: string;
   title: string;
