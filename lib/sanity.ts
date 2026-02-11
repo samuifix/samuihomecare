@@ -133,7 +133,17 @@ const portfolioBySlugQuery = `*[_type == "portfolioItem" && (slug == $slug || _i
   category,
   "imageUrl": image.asset->url,
   "imageAlt": image.alt,
-  body
+  "heroImageUrl": heroImage.asset->url,
+  "heroImageAlt": heroImage.alt,
+  "gallery": gallery[] {
+    "url": asset->url,
+    "alt": alt
+  },
+  body,
+  location,
+  workType,
+  duration,
+  review
 }`;
 
 const postSlugsQuery = `*[_type == "post"].slug`;
@@ -462,13 +472,27 @@ export async function getPortfolioBySlug(slug: string): Promise<import("./types"
     const json = await res.json();
     const r = json.result as Record<string, unknown> | null;
     if (!r || !r.title) return null;
+    const galleryRaw = r.gallery as { url?: string; alt?: string }[] | null | undefined;
+    const gallery = Array.isArray(galleryRaw)
+      ? galleryRaw
+          .filter((g) => g && typeof g.url === "string" && g.url)
+          .map((g) => ({ url: String(g.url), alt: g.alt ? String(g.alt) : undefined }))
+      : undefined;
+
     return {
       title: String(r.title),
       excerpt: String(r.excerpt ?? ""),
       category: String(r.category ?? ""),
       imageUrl: r.imageUrl ? String(r.imageUrl) : undefined,
       imageAlt: r.imageAlt ? String(r.imageAlt) : undefined,
+      heroImageUrl: r.heroImageUrl ? String(r.heroImageUrl) : undefined,
+      heroImageAlt: r.heroImageAlt ? String(r.heroImageAlt) : undefined,
+      gallery: gallery?.length ? gallery : undefined,
       body: r.body ? String(r.body) : undefined,
+      location: r.location ? String(r.location) : undefined,
+      workType: r.workType ? String(r.workType) : undefined,
+      duration: r.duration ? String(r.duration) : undefined,
+      review: r.review ? String(r.review) : undefined,
     };
   } catch {
     return null;

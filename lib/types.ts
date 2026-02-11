@@ -95,6 +95,12 @@ export interface PortfolioItem {
   imageAlt?: string;
 }
 
+/** Single gallery image */
+export interface PortfolioGalleryImage {
+  url: string;
+  alt?: string;
+}
+
 /** Single portfolio item (for /portfolio/[slug]) */
 export interface PortfolioSingle {
   title: string;
@@ -102,7 +108,16 @@ export interface PortfolioSingle {
   category: string;
   imageUrl?: string;
   imageAlt?: string;
+  /** Hero image (top of page); falls back to imageUrl if not set */
+  heroImageUrl?: string;
+  heroImageAlt?: string;
+  /** Gallery images */
+  gallery?: PortfolioGalleryImage[];
   body?: string;
+  location?: string;
+  workType?: string;
+  duration?: string;
+  review?: string;
 }
 
 /** Block content from Sanity (simple) */

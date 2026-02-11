@@ -4,7 +4,7 @@ export const site = {
   phone: "063-841-9593",
   phoneRaw: "0638419593",
   whatsapp: "https://wa.me/66638419593",
-  line: "https://line.me/ti/p/samuifix",
+  line: "https://line.me/ti/p/~samuifix",
   lineId: "samuifix",
   email: "hello@samuihomecare.com",
   address: "64/33 Moo 2, Mae Nam, Koh Samui, Surat Thani 84330",

@@ -1,6 +1,6 @@
 // Seed Sanity with mock data from the website.
-// Run from project root: node scripts/seed-sanity.cjs
-// Requires: NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET, SANITY_API_TOKEN in environment
+// Run from project root: npm run seed:sanity   (loads .env.local automatically)
+// Requires: NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET, SANITY_API_TOKEN in .env.local
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -19,7 +19,7 @@ const site = {
   phone: "063-841-9593",
   phoneRaw: "0638419593",
   whatsapp: "https://wa.me/66638419593",
-  line: "https://line.me/ti/p/samuifix",
+  line: "https://line.me/ti/p/~samuifix",
   lineId: "samuifix",
   email: "hello@samuihomecare.com",
   address: "64/33 Moo 2, Mae Nam, Koh Samui, Surat Thani 84330",
@@ -392,6 +392,11 @@ const portfolio = [
     excerpt:
       "High-standard spa pool construction on Koh Samui. Solid structure, excellent waterproofing, professional team with over 10 years of experience.",
     category: "Pool & structure",
+    location: "Chaweng, Koh Samui",
+    workType: "Pool construction & waterproofing",
+    duration: "6 weeks",
+    review:
+      "From design to handover, the team was professional and kept us updated every step of the way. The pool quality is outstanding and we use it every day.",
     body:
       "We delivered a complete spa pool and swimming pool system for a private villa on Koh Samui. The project included structural work, waterproofing, and integration of filtration and heating systems.\n\nOur team has over 10 years of experience in pool construction on the island. We work with durable materials suited to the tropical climate and ensure every detail meets the highest standards. The client was involved from design through to handover, and we provided clear timelines and regular updates.\n\nIf you are planning a new pool or spa on Koh Samui, contact us for a free quote and site visit.",
   },
@@ -401,6 +406,11 @@ const portfolio = [
     excerpt:
       "Steel roof structure and home repair in Koh Samui. Over 10 years of experience, 3,000+ homes serviced. Durable and resistant to island conditions.",
     category: "Roofing",
+    location: "Bophut, Koh Samui",
+    workType: "Steel roof structure & installation",
+    duration: "3 weeks",
+    review:
+      "Very satisfied with the new roof. It survived the last storm with no issues and the team was efficient and tidy.",
     body:
       "This project involved a full steel roof structure for a residential property on Koh Samui. We designed and installed a frame that can withstand heavy rain, wind, and salt air typical of the island.\n\nWe have serviced over 3,000 homes on Koh Samui and understand the local conditions. Our steel work is treated for corrosion resistance and installed with proper drainage and ventilation. The result is a long-lasting roof that protects the property and looks clean and professional.\n\nFor steel roofing, extensions, or repairs anywhere on the island, get in touch for a no-obligation assessment.",
   },
@@ -410,6 +420,11 @@ const portfolio = [
     excerpt:
       "Solid wood handrails with hidden LED lighting, modern design. Expert craftsmen with over 10 years of experience.",
     category: "Interior",
+    location: "Lamai, Koh Samui",
+    workType: "Interior carpentry & LED integration",
+    duration: "2 weeks",
+    review:
+      "The handrails look beautiful and the hidden LED is a nice touch. Workmanship is excellent and they finished on time.",
     body:
       "We built custom wood stair handrails with integrated LED lighting for a modern villa interior. The handrails are made from solid wood, finished for durability and a smooth feel, with a discreet LED strip that provides safe night-time lighting without affecting the daytime look.\n\nOur carpenters have over 10 years of experience in high-end interior work on Koh Samui. We can match existing wood species and finishes, and we work closely with electricians to ensure wiring and switches are correctly installed.\n\nWhether you need handrails, built-in furniture, or full interior woodwork, we can help from design to installation.",
   },
@@ -419,6 +434,11 @@ const portfolio = [
     excerpt:
       "Natural stone feature wall for outdoor shower by the pool. Beautiful, weather-resistant work by our Koh Samui team.",
     category: "Outdoor",
+    location: "Choeng Mon, Koh Samui",
+    workType: "Outdoor tiling & stonework",
+    duration: "10 days",
+    review:
+      "The stone wall has become the highlight of our garden. Great design and execution, and it still looks perfect after a year.",
     body:
       "This outdoor shower area features a natural stone wall installed in a jigsaw pattern. The wall was designed to complement the pool and garden, with careful attention to drainage and exposure to sun and rain.\n\nWe selected stone that performs well in tropical conditions and installed it with proper waterproofing and support. The result is a striking feature that is both functional and easy to maintain.\n\nFor outdoor tiling, stone work, or pool-area upgrades on Koh Samui, contact our team for a site visit and quote.",
   },

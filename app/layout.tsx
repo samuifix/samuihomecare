@@ -4,6 +4,7 @@ import "./globals.css";
 import { getPageData, getSeo } from "@/lib/sanity";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingContact } from "@/components/FloatingContact";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -102,6 +103,7 @@ export default async function RootLayout({
         <Header site={site} />
         <main className="flex-1">{children}</main>
         <Footer site={site} />
+        <FloatingContact site={site} />
       </body>
     </html>
   );
