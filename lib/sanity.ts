@@ -639,6 +639,7 @@ function getFallbackData(): PageData {
     reviews: fallbackReviews.map((r) => ({ ...r })),
     portfolio: fallbackPortfolio.map((p) => ({
       id: String(p.id),
+      slug: (p as { slug?: string }).slug ?? undefined,
       title: p.title,
       excerpt: p.excerpt,
       category: p.category,

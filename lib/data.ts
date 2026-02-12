@@ -287,25 +287,29 @@ export const reviews = [
 
 export const portfolio = [
   {
-    id: 1,
+    id: "1",
+    slug: "spa-pool-structure",
     title: "Spa pool structure & full swimming pool system — Private villa, Koh Samui",
     excerpt: "High-standard spa pool construction on Koh Samui. Solid structure, excellent waterproofing, professional team with over 10 years of experience.",
     category: "Pool & structure",
   },
   {
-    id: 2,
+    id: "2",
+    slug: "steel-roof-installation",
     title: "Steel roof installation — Koh Samui",
     excerpt: "Steel roof structure and home repair in Koh Samui. Over 10 years of experience, 3,000+ homes serviced. Durable and resistant to island conditions.",
     category: "Roofing",
   },
   {
-    id: 3,
+    id: "3",
+    slug: "wood-stair-handrail-led",
     title: "Wood stair handrail with hidden LED — Koh Samui",
     excerpt: "Solid wood handrails with hidden LED lighting, modern design. Expert craftsmen with over 10 years of experience.",
     category: "Interior",
   },
   {
-    id: 4,
+    id: "4",
+    slug: "outdoor-shower-stone-wall",
     title: "Outdoor shower stone wall — Jigsaw tile installation",
     excerpt: "Natural stone feature wall for outdoor shower by the pool. Beautiful, weather-resistant work by our Koh Samui team.",
     category: "Outdoor",
