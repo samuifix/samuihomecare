@@ -4,6 +4,74 @@
 
 ---
 
+## หลัง Deploy แล้ว — แก้เว็บ / เพิ่มบทความ / เพิ่ม Portfolio
+
+### 1. แก้ไขเนื้อหาเว็บ หรือเพิ่มบทความ (Blog) / เพิ่ม Portfolio
+
+เนื้อหาพวกนี้อยู่ที่ **Sanity** (ระบบหลังบ้าน) ไม่ได้อยู่ในโค้ดโดยตรง
+
+| สิ่งที่ทำ | วิธีทำ | หลังแก้แล้วต้องทำอะไร |
+|-----------|--------|------------------------|
+| **เพิ่มหรือแก้บทความ (Blog)** | เปิด **Sanity Studio** → เลือก **Post** → สร้าง/แก้บทความ → กด **Publish** | ถ้าตั้งค่า **Webhook** (ดูด้านล่าง) แล้ว → ไม่ต้องทำอะไร เว็บ build ใหม่อัตโนมัติ. ถ้ายังไม่ตั้ง → ไปที่ Vercel → **Deployments** → กด **Redeploy** |
+| **เพิ่มหรือแก้ Portfolio** | เปิด **Sanity Studio** → เลือก **Portfolio item** → สร้าง/แก้โปรเจกต์ → กด **Publish** | เหมือนด้านบน |
+| **แก้ Service, Review, ข้อมูลติดต่อ ฯลฯ** | แก้ใน Sanity Studio แล้ว **Publish** | เหมือนด้านบน |
+
+**วิธีเปิด Sanity Studio (ในเครื่องคุณ):**
+
+```powershell
+cd "c:\Users\samui\OneDrive\Desktop\newweb\studio"
+npm install
+npm run dev
+```
+
+จากนั้นเปิดเบราว์เซอร์ไปที่ **http://localhost:3333** (หรือพอร์ตที่แสดงใน Terminal) แล้วล็อกอิน Sanity เพื่อเพิ่ม/แก้เนื้อหา
+
+**ไม่ต้องแก้โค้ดเมื่อเพิ่มบทความหรือ Portfolio ใหม่ — ใช้ระบบนี้แทน:**
+
+1. **ตั้งค่า Sanity บน Vercel ให้ครบ**  
+   ไปที่ Vercel → โปรเจกต์ → **Settings** → **Environment Variables** แล้วเพิ่ม:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID` = Project ID จาก [manage.sanity.io](https://manage.sanity.io)
+   - `NEXT_PUBLIC_SANITY_DATASET` = `production`
+
+2. **เมื่อเพิ่มบทความหรือ Portfolio ใหม่ใน Sanity**  
+   แค่กด **Publish** ใน Sanity Studio จากนั้นไปที่ Vercel → **Deployments** → กด **Redeploy** (ที่ deployment ล่าสุด)  
+   ตอน build เว็บจะดึงรายการ slug ล่าสุดจาก Sanity เอง **ไม่ต้องไปเพิ่ม slug ในโค้ด**
+
+ถ้าไม่ได้ตั้งค่า env ของ Sanity บน Vercel โค้ดจะใช้รายการ fallback ในไฟล์แทน (ต้องไปเพิ่ม slug เองในโค้ดถ้ามีของใหม่)
+
+**ไม่ต้องกด Redeploy เองทุกครั้ง — ตั้งค่า Webhook ให้ Vercel build อัตโนมัติเมื่อ Publish ใน Sanity**
+
+ทำครั้งเดียวแล้วต่อไปแค่ Publish ใน Sanity เว็บจะ build ใหม่เอง ไม่ต้องเข้า Vercel กด Redeploy
+
+| ขั้นตอน | ทำที่ไหน | ทำอะไร |
+|--------|----------|--------|
+| **1. สร้าง Deploy Hook** | **Vercel** | โปรเจกต์ → **Settings** → **Git** → เลื่อนลงถึง **Deploy Hooks** → ช่อง Name ใส่ `Sanity Publish` → Branch เลือก `main` → กด **Create Hook** → **คัดลอก URL** ที่ได้ (รูปแบบ `https://api.vercel.com/v1/integrations/deploy/...`) |
+| **2. สร้าง Webhook ใน Sanity** | **Sanity** | เปิด [sanity.io/manage](https://sanity.io/manage) → เลือก **โปรเจกต์** → **API** → **Webhooks** → **Create webhook** → ตั้งค่า:<br>• **Name:** `Trigger Vercel deploy`<br>• **URL:** วาง URL จากขั้นที่ 1<br>• **Trigger on:** เลือก **Create**, **Update**, **Delete** (หรือเฉพาะ **Update** ถ้าอยากให้ยิงเฉพาะตอน Publish)<br>• **Filter (ไม่บังคับ):** ถ้าอยากให้ยิงเฉพาะเมื่อแก้บทความหรือ Portfolio ใส่ `_type in ["post", "portfolioItem", "service", "siteSettings"]`<br>→ กด **Save** |
+
+หลังจากนี้ทุกครั้งที่คุณ **Publish** เอกสารใน Sanity (บทความ, Portfolio, Service ฯลฯ) Sanity จะยิง URL ไปที่ Vercel → Vercel จะ **build และ deploy ใหม่อัตโนมัติ** ไม่ต้องเข้าไปกด Redeploy เองอีก
+
+---
+
+### 2. แก้ไขโค้ดหรือดีไซน์เว็บ (เช่น เปลี่ยนสี, เปลี่ยนข้อความในโค้ด, เพิ่ม section)
+
+ขั้นตอนแบบเดิม:
+
+1. แก้ไฟล์ใน Cursor (หรือ VS Code) แล้ว **บันทึก (Ctrl + S)**
+2. เปิด Terminal ที่โฟลเดอร์โปรเจกต์ แล้วรัน:
+   ```powershell
+   npm run build
+   ```
+   ถ้า build ผ่านแล้วค่อยทำขั้นต่อไป
+3. ส่งโค้ดขึ้น GitHub:
+   ```powershell
+   git add .
+   git commit -m "อธิบายสิ่งที่แก้ เช่น แก้สี header"
+   git push
+   ```
+4. Vercel จะ **build และ deploy อัตโนมัติ** จากโค้ดที่ push ไป รอสักครู่แล้วเข้าไปดูที่ URL เว็บ
+
+---
+
 ## ขั้นที่ 1: บันทึกไฟล์ในโปรเจกต์
 
 1. ใน Cursor (หรือ VS Code) กด **Ctrl + S** เพื่อบันทึกไฟล์ที่แก้ไขทั้งหมด  

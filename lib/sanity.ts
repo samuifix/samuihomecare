@@ -367,9 +367,23 @@ export async function getServiceSlugs(): Promise<string[]> {
   }
 }
 
+/** Map fallback services to ServiceCardItem[] for /services/ page when Sanity is not configured */
+function getServicesFallback(): import("./types").ServiceCardItem[] {
+  return fallbackServices.map((s) => ({
+    id: s.id,
+    slug: s.id,
+    title: s.title,
+    short: s.short,
+    points: [...s.points],
+    icon: s.icon,
+    href: s.href,
+    ...("cta" in s && s.cta ? { cta: s.cta } : {}),
+  }));
+}
+
 /** All services for /services/ page (cards with price, rating, serviced count) */
 export async function getServicesForAllPage(): Promise<import("./types").ServiceCardItem[]> {
-  if (!projectId || !dataset) return [];
+  if (!projectId || !dataset) return getServicesFallback();
   try {
     const list = await sanityFetch<Record<string, unknown>[] | null>(servicesListPageQuery);
     if (!Array.isArray(list)) return [];
@@ -391,7 +405,7 @@ export async function getServicesForAllPage(): Promise<import("./types").Service
         servicedCount: typeof r.servicedCount === "number" ? r.servicedCount : undefined,
       }));
   } catch {
-    return [];
+    return getServicesFallback();
   }
 }
 
