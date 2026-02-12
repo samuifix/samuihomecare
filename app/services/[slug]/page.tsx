@@ -5,9 +5,31 @@ import { getServiceBySlug, getServiceSlugs, getRelatedServices } from "@/lib/san
 import { BASE_URL, SITE_NAME, SITE_PHONE_RAW } from "@/lib/constants";
 import type { ServiceCardItem } from "@/lib/types";
 
+/** Fallback when Sanity is unavailable at build (e.g. Vercel). Add new slugs when you add services. */
+const FALLBACK_SLUGS = [
+  "electrical",
+  "plumbing",
+  "aircon",
+  "construction",
+  "renovation",
+  "cleaning",
+  "emergency",
+  "welding",
+  "painting",
+  "toilet-replacement",
+  "tree-cutting",
+  "garden-care",
+];
+
+/** Required for output: "export" — must list all service paths to pre-render */
 export async function generateStaticParams() {
-  const slugs = await getServiceSlugs();
-  return slugs.map((slug) => ({ slug }));
+  try {
+    const slugs = await getServiceSlugs();
+    const list = Array.isArray(slugs) && slugs.length > 0 ? slugs : FALLBACK_SLUGS;
+    return list.map((slug) => ({ slug }));
+  } catch {
+    return FALLBACK_SLUGS.map((slug) => ({ slug }));
+  }
 }
 
 export async function generateMetadata({
