@@ -503,9 +503,20 @@ export async function getPortfolioSlugs(): Promise<string[]> {
   }
 }
 
+/** Single portfolio fallback from data.ts when Sanity is not configured */
+function getPortfolioBySlugFallback(slug: string): import("./types").PortfolioSingle | null {
+  const p = fallbackPortfolio.find((x) => (x as { slug?: string }).slug === slug || String(x.id) === slug);
+  if (!p) return null;
+  return {
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
+  };
+}
+
 /** Single portfolio by slug */
 export async function getPortfolioBySlug(slug: string): Promise<import("./types").PortfolioSingle | null> {
-  if (!projectId || !dataset) return null;
+  if (!projectId || !dataset) return getPortfolioBySlugFallback(slug);
   try {
     const res = await fetchWithTimeout(
       `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}`,
@@ -516,10 +527,10 @@ export async function getPortfolioBySlug(slug: string): Promise<import("./types"
         ...(process.env.NODE_ENV === "development" ? { cache: "no-store" as RequestCache } : { next: { revalidate: 60 } }),
       }
     );
-    if (!res.ok) return null;
+    if (!res.ok) return getPortfolioBySlugFallback(slug);
     const json = await res.json();
     const r = json.result as Record<string, unknown> | null;
-    if (!r || !r.title) return null;
+    if (!r || !r.title) return getPortfolioBySlugFallback(slug);
     const galleryRaw = r.gallery as { url?: string; alt?: string }[] | null | undefined;
     const gallery = Array.isArray(galleryRaw)
       ? galleryRaw
@@ -543,7 +554,7 @@ export async function getPortfolioBySlug(slug: string): Promise<import("./types"
       review: r.review ? String(r.review) : undefined,
     };
   } catch {
-    return null;
+    return getPortfolioBySlugFallback(slug);
   }
 }
 
