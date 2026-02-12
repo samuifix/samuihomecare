@@ -532,14 +532,21 @@ export interface PostListItem {
   coverImageUrl: string | null;
 }
 
+/** Fallback blog list when Sanity is not configured (e.g. Vercel without env) */
+const POSTS_LIST_FALLBACK: PostListItem[] = [
+  { slug: "choosing-air-conditioning-koh-samui", title: "Choosing Air Conditioning on Koh Samui", excerpt: null, publishedAt: null, coverImageUrl: null },
+  { slug: "electrical-safety-villa", title: "Electrical Safety for Your Villa", excerpt: null, publishedAt: null, coverImageUrl: null },
+  { slug: "home-maintenance-tips-koh-samui", title: "Home Maintenance Tips for Koh Samui", excerpt: null, publishedAt: null, coverImageUrl: null },
+];
+
 /** List of posts for blog index */
 export async function getPostsList(): Promise<PostListItem[]> {
-  if (!projectId || !dataset) return [];
+  if (!projectId || !dataset) return POSTS_LIST_FALLBACK;
   try {
     const list = await sanityFetch<PostListItem[] | null>(postsListQuery);
-    return Array.isArray(list) ? list : [];
+    return Array.isArray(list) && list.length > 0 ? list : POSTS_LIST_FALLBACK;
   } catch {
-    return [];
+    return POSTS_LIST_FALLBACK;
   }
 }
 
