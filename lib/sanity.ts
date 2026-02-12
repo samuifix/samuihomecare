@@ -418,9 +418,24 @@ export async function getRelatedServices(
   return all.filter((s) => s.slug !== excludeSlug).slice(0, limit);
 }
 
+/** Single service fallback from data.ts when Sanity is not configured */
+function getServiceBySlugFallback(slug: string): import("./types").ServiceSingle | null {
+  const s = fallbackServices.find((x) => x.id === slug);
+  if (!s) return null;
+  return {
+    title: s.title,
+    short: s.short,
+    description: s.description,
+    points: [...s.points],
+    icon: s.icon,
+    href: s.href,
+    ...("cta" in s && s.cta ? { cta: s.cta } : {}),
+  };
+}
+
 /** Single service by slug (for /services/[slug]) */
 export async function getServiceBySlug(slug: string): Promise<import("./types").ServiceSingle | null> {
-  if (!projectId || !dataset) return null;
+  if (!projectId || !dataset) return getServiceBySlugFallback(slug);
   try {
     const res = await fetchWithTimeout(
       `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}`,
@@ -454,7 +469,7 @@ export async function getServiceBySlug(slug: string): Promise<import("./types").
       servicedCount: typeof r.servicedCount === "number" ? r.servicedCount : undefined,
     };
   } catch {
-    return null;
+    return getServiceBySlugFallback(slug);
   }
 }
 
@@ -539,6 +554,13 @@ const POSTS_LIST_FALLBACK: PostListItem[] = [
   { slug: "home-maintenance-tips-koh-samui", title: "Home Maintenance Tips for Koh Samui", excerpt: null, publishedAt: null, coverImageUrl: null },
 ];
 
+/** Fallback single post when Sanity is not configured */
+const POST_SINGLE_FALLBACK: Record<string, import("./types").PostSingle> = {
+  "choosing-air-conditioning-koh-samui": { title: "Choosing Air Conditioning on Koh Samui", excerpt: null, publishedAt: null },
+  "electrical-safety-villa": { title: "Electrical Safety for Your Villa", excerpt: null, publishedAt: null },
+  "home-maintenance-tips-koh-samui": { title: "Home Maintenance Tips for Koh Samui", excerpt: null, publishedAt: null },
+};
+
 /** List of posts for blog index */
 export async function getPostsList(): Promise<PostListItem[]> {
   if (!projectId || !dataset) return POSTS_LIST_FALLBACK;
@@ -552,7 +574,7 @@ export async function getPostsList(): Promise<PostListItem[]> {
 
 /** Single post by slug */
 export async function getPostBySlug(slug: string): Promise<import("./types").PostSingle | null> {
-  if (!projectId || !dataset) return null;
+  if (!projectId || !dataset) return POST_SINGLE_FALLBACK[slug] ?? null;
   try {
     const res = await fetchWithTimeout(
       `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}`,
@@ -576,7 +598,7 @@ export async function getPostBySlug(slug: string): Promise<import("./types").Pos
       body: r.body as import("./types").PostBlock[] | undefined,
     };
   } catch {
-    return null;
+    return POST_SINGLE_FALLBACK[slug] ?? null;
   }
 }
 
