@@ -3,7 +3,7 @@ import type { PortfolioItem } from "@/lib/types";
 
 export function Portfolio({ portfolio }: { portfolio: PortfolioItem[] }) {
   return (
-    <section id="portfolio" className="py-16 sm:py-24 bg-slate-50">
+    <section id="portfolio" className="py-16 sm:py-24 bg-slate-50 animate-section-in animate-delay-5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">Recent projects</h2>
@@ -11,7 +11,7 @@ export function Portfolio({ portfolio }: { portfolio: PortfolioItem[] }) {
             Real work from customers who trust us
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 stagger-children">
           {portfolio.map((p) => {
             const href = p.slug ? `/portfolio/${p.slug}/` : undefined;
             const content = (

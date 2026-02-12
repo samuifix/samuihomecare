@@ -1,4 +1,4 @@
-# Samui Home Care — Website
+# Samui Construction — Website
 
 A fast, SEO-friendly website for home repair and maintenance services on Koh Samui. Built with **Next.js** (latest), **Tailwind CSS**, **Sanity.io** (headless CMS), and static export for shared hosting.
 

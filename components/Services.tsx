@@ -13,7 +13,7 @@ export function Services({
   const sectionSubtitle = site.servicesSectionSubtitle ?? "Full-service home repair and maintenance with professional craftsmen";
 
   return (
-    <section id="services" className="py-16 sm:py-24 bg-white">
+    <section id="services" className="py-16 sm:py-24 bg-white animate-section-in animate-delay-1">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">{sectionTitle}</h2>

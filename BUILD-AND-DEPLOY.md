@@ -39,6 +39,16 @@ npm run dev
 
 ถ้าไม่ได้ตั้งค่า env ของ Sanity บน Vercel โค้ดจะใช้รายการ fallback ในไฟล์แทน (ต้องไปเพิ่ม slug เองในโค้ดถ้ามีของใหม่)
 
+**ทำไมอัปเดตรูป/เนื้อหาใน Portfolio (หรือบทความ, Service) บน Sanity แล้วเว็บไม่อัปเดท?**
+
+เพราะ Vercel จะ build ใหม่ก็ต่อเมื่อมี **การ deploy** เท่านั้น การกด Publish ใน Sanity ไม่ได้สั่งให้ Vercel ทำอะไรเอง คุณต้องทำอย่างใดอย่างหนึ่ง:
+
+- **วิธีชั่วคราว:** หลัง Publish ใน Sanity แล้ว ไปที่ **Vercel** → โปรเจกต์ → **Deployments** → กด **⋯** ที่ deployment ล่าสุด → **Redeploy**  
+  → Vercel จะ build ใหม่และดึงข้อมูลล่าสุดจาก Sanity (รวมรูปที่อัปเดต)
+- **วิธีถาวร (แนะนำ):** ตั้งค่า **Webhook** ด้านล่างครั้งเดียว หลังจากนั้นทุกครั้งที่ Publish ใน Sanity จะทำให้ Vercel **Redeploy อัตโนมัติ** ไม่ต้องเข้า Vercel กดเอง
+
+---
+
 **ไม่ต้องกด Redeploy เองทุกครั้ง — ตั้งค่า Webhook ให้ Vercel build อัตโนมัติเมื่อ Publish ใน Sanity**
 
 ทำครั้งเดียวแล้วต่อไปแค่ Publish ใน Sanity เว็บจะ build ใหม่เอง ไม่ต้องเข้า Vercel กด Redeploy
@@ -49,6 +59,19 @@ npm run dev
 | **2. สร้าง Webhook ใน Sanity** | **Sanity** | เปิด [sanity.io/manage](https://sanity.io/manage) → เลือก **โปรเจกต์** → **API** → **Webhooks** → **Create webhook** → ตั้งค่า:<br>• **Name:** `Trigger Vercel deploy`<br>• **URL:** วาง URL จากขั้นที่ 1<br>• **Trigger on:** เลือก **Create**, **Update**, **Delete** (หรือเฉพาะ **Update** ถ้าอยากให้ยิงเฉพาะตอน Publish)<br>• **Filter (ไม่บังคับ):** ถ้าอยากให้ยิงเฉพาะเมื่อแก้บทความหรือ Portfolio ใส่ `_type in ["post", "portfolioItem", "service", "siteSettings"]`<br>→ กด **Save** |
 
 หลังจากนี้ทุกครั้งที่คุณ **Publish** เอกสารใน Sanity (บทความ, Portfolio, Service ฯลฯ) Sanity จะยิง URL ไปที่ Vercel → Vercel จะ **build และ deploy ใหม่อัตโนมัติ** ไม่ต้องเข้าไปกด Redeploy เองอีก
+
+**ถ้าทำตามวิธีที่ 1 และ 2 แล้วยังไม่ได้ผล — เช็คทีละข้อ**
+
+| ลำดับ | เช็ค | วิธีแก้ |
+|-------|------|--------|
+| 1 | **Vercel ใช้ข้อมูลจาก Sanity จริงหรือไม่** | ไปที่ Vercel → โปรเจกต์ → **Settings** → **Environment Variables** ต้องมี **NEXT_PUBLIC_SANITY_PROJECT_ID** และ **NEXT_PUBLIC_SANITY_DATASET** (ค่า = Project ID และ `production` จาก Sanity) ถ้าไม่มี สั่ง Redeploy อย่างไร build ก็จะไม่ดึงรูป/เนื้อหาจาก Sanity (จะใช้ข้อมูล fallback ในโค้ด) → **เพิ่มทั้งสองตัวแล้ว Save จากนั้น Redeploy ใหม่** |
+| 2 | **ล้าง Build Cache ตอน Redeploy** | เวลา Redeploy ให้เลือก **Redeploy without cache** (ไม่ใช้แค่ Redeploy ธรรมดา) เพื่อให้ build ดึงข้อมูลจาก Sanity ใหม่ทั้งหมด: Deployments → ⋯ ที่ deployment ล่าสุด → **Redeploy** → เลือก **Redeploy without cache** (หรือ Clear cache and redeploy) |
+| 3 | **Redeploy ต้องกดที่ deployment ล่าสุด** | ต้องกด ⋯ → Redeploy ที่ **deployment แถวบนสุด** (ล่าสุด) ไม่ใช่ deployment เก่าข้างล่าง |
+| 4 | **Webhook ต้องยิงเมื่อ Publish** | ใน Sanity → [sanity.io/manage](https://sanity.io/manage) → โปรเจกต์ → **API** → **Webhooks** เปิด webhook ที่สร้างไว้ ตรวจว่า **URL** ตรงกับ Deploy Hook จาก Vercel (คัดลอกจาก Vercel อีกครั้งถ้าจำไม่ได้) และ **Trigger on** ต้องมี **Update** (หรือ Create + Update + Delete) ถ้ามี **Filter** ต้องมี `portfolioItem` เช่น `_type in ["post", "portfolioItem", "service", "siteSettings"]` |
+| 5 | **ทดสอบว่า Webhook ทำงาน** | หลังตั้ง Webhook แล้ว ลอง **Publish เอกสารหนึ่งรายการใน Sanity** (เช่นแก้ Portfolio แล้ว Publish) จากนั้นไปที่ Vercel → **Deployments** ดูว่ามี **deployment ใหม่** เกิดขึ้นภายใน 1–2 นาทีหรือไม่ ถ้าไม่มี แปลว่า Webhook ไม่ยิง → กลับไปเช็ค URL และ Trigger ใน Sanity |
+| 6 | **Cache รูปที่ browser / CDN** | หลัง Vercel deploy เสร็จแล้ว ถ้ารูปบนเว็บยังเป็นรูปเก่า ลอง **กด Ctrl+Shift+R** (hard refresh) หรือเปิดเว็บใน **โหมดไม่ระบุตัวตน (Incognito)** เพื่อดูว่าหน้าเว็บเป็นเวอร์ชันล่าสุดหรือไม่ |
+
+ถ้าเช็คครบแล้วยังไม่อัปเดท แนะนำให้ส่งข้อมูลนี้มา: (1) ใน Vercel → Deployments มี deployment ใหม่หลัง Publish ใน Sanity หรือไม่ (2) ใน Vercel → Settings → Environment Variables มี NEXT_PUBLIC_SANITY_PROJECT_ID และ NEXT_PUBLIC_SANITY_DATASET หรือไม่ (3) เวลา Redeploy คุณเลือก "Redeploy without cache" หรือแค่ "Redeploy"
 
 **เพิ่มบริการ (Service) ใหม่ใน Sanity — หน้ารายละเอียดจะเพิ่มให้อัตโนมัติหรือไม่?**
 

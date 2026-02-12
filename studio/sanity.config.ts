@@ -13,7 +13,7 @@ if (!projectId) {
 
 export default defineConfig({
   name: "samui-home-care",
-  title: "Samui Home Care CMS",
+  title: "Samui Construction CMS",
   projectId,
   dataset,
   plugins: [structureTool()],

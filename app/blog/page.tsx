@@ -3,7 +3,7 @@ import { getPostsList } from "@/lib/sanity";
 
 export const metadata = {
   title: "Blog",
-  description: "Articles and updates from Samui Home Care",
+  description: "Articles and updates from Samui Construction",
 };
 
 export default async function BlogPage() {

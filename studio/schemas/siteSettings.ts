@@ -5,7 +5,7 @@ export const siteSettings = defineType({
   title: "Site settings",
   type: "document",
   fields: [
-    defineField({ name: "name", title: "Site name", type: "string", initialValue: "Samui Home Care" }),
+    defineField({ name: "name", title: "Site name", type: "string", initialValue: "Samui Construction" }),
     defineField({ name: "tagline", title: "Tagline", type: "string" }),
     defineField({ name: "phone", title: "Phone (display)", type: "string" }),
     defineField({ name: "phoneRaw", title: "Phone (raw, for tel: link)", type: "string", description: "e.g. 0638419593" }),

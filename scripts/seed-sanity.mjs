@@ -14,7 +14,7 @@ if (!projectId || !token) {
 }
 
 const site = {
-  name: "Samui Home Care",
+  name: "Samui Construction",
   tagline: "Full-service home repair & maintenance on Koh Samui",
   phone: "063-841-9593",
   phoneRaw: "0638419593",
@@ -45,6 +45,30 @@ const services = [
   { id: "emergency", sortOrder: 6, title: "Emergency Service", short: "24-hour urgent repairs", description: "24-hour service for urgent and emergency jobs.", points: ["AC breakdown", "Power or water outage", "Urgent repairs", "24-hour availability"], icon: "🚨", href: "#contact", cta: "Call now" },
   { id: "welding", sortOrder: 7, title: "Welding", short: "Steel, structures, doors, windows, fences", description: "Steel welding, structural work, doors, windows, fences.", points: ["Welding repairs", "Steel fences", "Steel doors & windows", "Structural welding"], icon: "🔧", href: "#services" },
   { id: "painting", sortOrder: 8, title: "Painting", short: "House, building, walls, fences", description: "House painting, building, walls, fences — full service.", points: ["Surface preparation", "Fence, door & window painting", "Interior & exterior walls", "Full house painting"], icon: "🎨", href: "#services" },
+  // New mock service (English) — test that the website can add a new service page after Sanity + Redeploy
+  {
+    id: "pool-spa-maintenance",
+    slug: "pool-spa-maintenance",
+    sortOrder: 9,
+    title: "Pool & Spa Maintenance",
+    short: "Cleaning, water balance, equipment checks, and repairs for pools and spas on Koh Samui",
+    description: "Full pool and spa maintenance service on Koh Samui. We handle weekly cleaning, water chemistry, pump and filter checks, and minor repairs so your pool stays clean and safe year-round.",
+    points: [
+      "Weekly or fortnightly pool cleaning",
+      "Water testing and chemical balance",
+      "Pump, filter, and skimmer checks",
+      "Minor repairs and leak detection",
+    ],
+    icon: "🏊",
+    href: "#services",
+    body: "Our pool and spa maintenance service is designed for villa owners and rental properties on Koh Samui. We offer flexible schedules (weekly or fortnightly) and can tailor the service to your pool size and usage.\n\nIncluded in each visit: skimming debris, brushing walls and steps, vacuuming, checking and cleaning the pump basket and filter, testing water (pH, chlorine, alkalinity), and adding chemicals as needed. We also inspect equipment and report any issues with a clear quote for repairs.",
+    pricingOverview: "Rates depend on pool size and visit frequency. Typical range: from 1,500 THB per visit for standard villa pools. Monthly contracts receive a discounted rate. One-off deep cleans and opening/closing services are quoted separately.",
+    travelCostOverview: "Travel within our standard areas (Chaweng, Bophut, Lamai, Maenam, Choeng Mon) is included in the visit price. For other locations on the island we may add a small call-out fee; we will confirm before your first visit.",
+    termsOverview: "We recommend a minimum 3-month agreement for regular maintenance. Payment is due after each visit unless otherwise agreed. Cancellations with less than 24 hours notice may be charged. We guarantee water quality and equipment checks at each visit.",
+    priceLabel: "From 1,500 THB / visit",
+    rating: 5,
+    servicedCount: 89,
+  },
 ];
 
 const whyUs = [
@@ -57,7 +81,7 @@ const whyUs = [
 ];
 
 const reviews = [
-  { name: "David Johnson", category: "Construction", rating: 5, text: "Samui Home Care was fast and very professional. Our new kitchen looks exactly as designed.", date: "19 Nov 2025" },
+  { name: "David Johnson", category: "Construction", rating: 5, text: "Samui Construction was fast and very professional. Our new kitchen looks exactly as designed.", date: "19 Nov 2025" },
   { name: "Lisa Chen", category: "Electrical", rating: 5, text: "Highly skilled technicians. The electrical system is safe and works perfectly with no issues.", date: "19 Nov 2025" },
   { name: "Sarah Williams", category: "Construction", rating: 5, text: "Polite team and great attention to detail. Our bathroom looks much more modern now.", date: "18 Nov 2025" },
   { name: "James Wilson", category: "Plumbing", rating: 5, text: "Fixed our water pressure and leak quickly. Fair price and tidy work.", date: "17 Nov 2025" },
@@ -81,13 +105,13 @@ const categories = [
 
 const seoHome = {
   pageSlug: "home",
-  metaTitle: "Samui Home Care — Repair & Maintenance on Koh Samui",
+  metaTitle: "Samui Construction — Repair & Maintenance on Koh Samui",
   metaDescription: "Full-service home repair and maintenance on Koh Samui. Electrical, plumbing, AC, construction, renovation & cleaning. 24/7 service. 5+ years experience.",
   metaKeywords: "Koh Samui home repair, Samui maintenance, electrical Samui, plumbing Koh Samui, AC repair Samui, construction Koh Samui",
-  ogTitle: "Samui Home Care — Repair & Maintenance on Koh Samui",
+  ogTitle: "Samui Construction — Repair & Maintenance on Koh Samui",
   ogDescription: "Full-service home repair and maintenance on Koh Samui. 24/7 service. Professional craftsmen.",
   twitterCard: "summary_large_image",
-  twitterTitle: "Samui Home Care — Repair & Maintenance on Koh Samui",
+  twitterTitle: "Samui Construction — Repair & Maintenance on Koh Samui",
   twitterDescription: "Full-service home repair and maintenance on Koh Samui. 24/7 service.",
   canonicalUrl: "https://samuihomecare.com",
   robots: "index, follow",

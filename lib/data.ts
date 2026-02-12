@@ -1,5 +1,5 @@
 export const site = {
-  name: "Samui Home Care",
+  name: "Samui Construction",
   tagline: "Full-service home repair & maintenance on Koh Samui",
   phone: "063-841-9593",
   phoneRaw: "0638419593",
@@ -259,7 +259,7 @@ export const reviews = [
     name: "David Johnson",
     category: "Construction",
     rating: 5,
-    text: "Samui Home Care was fast and very professional. Our new kitchen looks exactly as designed.",
+    text: "Samui Construction was fast and very professional. Our new kitchen looks exactly as designed.",
     date: "19 Nov 2025",
   },
   {

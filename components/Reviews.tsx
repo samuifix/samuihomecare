@@ -2,7 +2,7 @@ import type { ReviewItem } from "@/lib/types";
 
 export function Reviews({ reviews }: { reviews: ReviewItem[] }) {
   return (
-    <section id="reviews" className="py-16 sm:py-24 bg-white">
+    <section id="reviews" className="py-16 sm:py-24 bg-white animate-section-in animate-delay-4">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">What our clients say</h2>
@@ -10,7 +10,7 @@ export function Reviews({ reviews }: { reviews: ReviewItem[] }) {
             Feedback from customers who trust us to take care of their homes
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
           {reviews.map((r) => (
             <blockquote
               key={r.name + r.date}

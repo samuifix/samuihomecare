@@ -2,7 +2,7 @@ import type { SiteSettings } from "@/lib/types";
 
 export function Contact({ site }: { site: SiteSettings }) {
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-white">
+    <section id="contact" className="py-16 sm:py-24 bg-white animate-section-in animate-delay-6">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">Contact us</h2>

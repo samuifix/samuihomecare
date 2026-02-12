@@ -2,7 +2,7 @@
 
 export function Newsletter() {
   return (
-    <section className="py-12 sm:py-16 bg-teal-600">
+    <section className="py-12 sm:py-16 bg-teal-600 animate-section-in animate-delay-7">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <h2 className="text-2xl font-bold text-white">
           Tips & special offers

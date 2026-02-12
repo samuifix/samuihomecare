@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     type: "website",
     url: `${BASE_URL}/services/`,
     siteName: SITE_NAME,
-    title: "All services | Samui Home Care",
+    title: "All services | Samui Construction",
     description: DEFAULT_DESCRIPTION,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "All services | Samui Home Care",
+    title: "All services | Samui Construction",
     description: DEFAULT_DESCRIPTION,
   },
 };

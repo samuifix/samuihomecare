@@ -20,7 +20,7 @@ export const viewport: Viewport = {
 };
 
 const defaultBaseUrl = "https://samuihomecare.com";
-const defaultTitle = "Samui Home Care — Repair & Maintenance on Koh Samui";
+const defaultTitle = "Samui Construction — Repair & Maintenance on Koh Samui";
 const defaultDescription =
   "Full-service home repair and maintenance on Koh Samui. Electrical, plumbing, AC, construction, renovation & cleaning. 24/7 service. 5+ years experience.";
 
@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(baseUrl),
     title: {
       default: title,
-      template: "%s | Samui Home Care",
+      template: "%s | Samui Construction",
     },
     description,
     keywords: seo?.metaKeywords

@@ -14,7 +14,7 @@ if (!projectId || !token) {
 }
 
 const site = {
-  name: "Samui Home Care",
+  name: "Samui Construction",
   tagline: "Full-service home repair & maintenance on Koh Samui",
   phone: "063-841-9593",
   phoneRaw: "0638419593",
@@ -359,7 +359,7 @@ const reviews = [
     name: "David Johnson",
     category: "Construction",
     rating: 5,
-    text: "Samui Home Care was fast and very professional. Our new kitchen looks exactly as designed.",
+    text: "Samui Construction was fast and very professional. Our new kitchen looks exactly as designed.",
     date: "19 Nov 2025",
   },
   {
@@ -484,7 +484,7 @@ const posts = [
       ),
       blockHeading("When to call a professional", "h3"),
       blockParagraph(
-        "For anything involving electricity, gas, or structural changes, always use a qualified technician. Samui Home Care offers 24/7 emergency call-outs and scheduled maintenance plans so you can enjoy your home with peace of mind."
+        "For anything involving electricity, gas, or structural changes, always use a qualified technician. Samui Construction offers 24/7 emergency call-outs and scheduled maintenance plans so you can enjoy your home with peace of mind."
       ),
     ],
   },
@@ -524,7 +524,7 @@ const posts = [
       ),
       blockHeading("24/7 support"),
       blockParagraph(
-        "Samui Home Care provides round-the-clock electrical call-outs for emergencies such as power loss, burning smells, or sparking. Do not attempt to repair mains electricity yourself—call us and we will send a technician as soon as possible."
+        "Samui Construction provides round-the-clock electrical call-outs for emergencies such as power loss, burning smells, or sparking. Do not attempt to repair mains electricity yourself—call us and we will send a technician as soon as possible."
       ),
     ],
   },
@@ -541,16 +541,16 @@ const categories = [
 
 const seoHome = {
   pageSlug: "home",
-  metaTitle: "Samui Home Care — Repair & Maintenance on Koh Samui",
+  metaTitle: "Samui Construction — Repair & Maintenance on Koh Samui",
   metaDescription:
     "Full-service home repair and maintenance on Koh Samui. Electrical, plumbing, AC, construction, renovation & cleaning. 24/7 service. 5+ years experience.",
   metaKeywords:
     "Koh Samui home repair, Samui maintenance, electrical Samui, plumbing Koh Samui, AC repair Samui, construction Koh Samui",
-  ogTitle: "Samui Home Care — Repair & Maintenance on Koh Samui",
+  ogTitle: "Samui Construction — Repair & Maintenance on Koh Samui",
   ogDescription:
     "Full-service home repair and maintenance on Koh Samui. 24/7 service. Professional craftsmen.",
   twitterCard: "summary_large_image",
-  twitterTitle: "Samui Home Care — Repair & Maintenance on Koh Samui",
+  twitterTitle: "Samui Construction — Repair & Maintenance on Koh Samui",
   twitterDescription:
     "Full-service home repair and maintenance on Koh Samui. 24/7 service.",
   canonicalUrl: "https://samuihomecare.com",

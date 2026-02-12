@@ -3,12 +3,12 @@ import type { CategoryItem } from "@/lib/types";
 
 export function Categories({ categories }: { categories: CategoryItem[] }) {
   return (
-    <section className="py-12 sm:py-16 bg-slate-100/80">
+    <section className="py-12 sm:py-16 bg-slate-100/80 animate-section-in animate-delay-2">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">
           Browse by category
         </h2>
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3 stagger-children">
           {categories.map((c) => (
             <Link
               key={c.name}
