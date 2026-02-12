@@ -33,6 +33,9 @@ export const services = [
     ],
     icon: "⚡",
     href: "#services",
+    priceLabel: "From 1,000 THB / visit",
+    rating: 5,
+    servicedCount: 320,
   },
   {
     id: "plumbing",
@@ -47,6 +50,9 @@ export const services = [
     ],
     icon: "💧",
     href: "#services",
+    priceLabel: "From 1,000 THB / visit",
+    rating: 5,
+    servicedCount: 280,
   },
   {
     id: "aircon",
@@ -61,6 +67,9 @@ export const services = [
     ],
     icon: "❄️",
     href: "#services",
+    priceLabel: "From 1,500 THB / visit",
+    rating: 5,
+    servicedCount: 450,
   },
   {
     id: "construction",
@@ -75,6 +84,9 @@ export const services = [
     ],
     icon: "🔨",
     href: "#services",
+    priceLabel: "Quote on request",
+    rating: 5,
+    servicedCount: 180,
   },
   {
     id: "renovation",
@@ -89,6 +101,9 @@ export const services = [
     ],
     icon: "✨",
     href: "#services",
+    priceLabel: "Quote on request",
+    rating: 5,
+    servicedCount: 95,
   },
   {
     id: "cleaning",
@@ -103,6 +118,9 @@ export const services = [
     ],
     icon: "🧹",
     href: "#services",
+    priceLabel: "From 1,200 THB / visit",
+    rating: 5,
+    servicedCount: 210,
   },
   {
     id: "emergency",
@@ -118,6 +136,9 @@ export const services = [
     icon: "🚨",
     href: "#contact",
     cta: "Call now",
+    priceLabel: "Call for quote",
+    rating: 5,
+    servicedCount: 140,
   },
   {
     id: "welding",
@@ -132,6 +153,9 @@ export const services = [
     ],
     icon: "🔧",
     href: "#services",
+    priceLabel: "Quote on request",
+    rating: 5,
+    servicedCount: 75,
   },
   {
     id: "painting",
@@ -146,6 +170,9 @@ export const services = [
     ],
     icon: "🎨",
     href: "#services",
+    priceLabel: "From 2,000 THB / job",
+    rating: 5,
+    servicedCount: 120,
   },
   {
     id: "toilet-replacement",
@@ -160,6 +187,9 @@ export const services = [
     ],
     icon: "🚽",
     href: "#services",
+    priceLabel: "From 3,000 THB",
+    rating: 5,
+    servicedCount: 65,
   },
   {
     id: "tree-cutting",
@@ -174,6 +204,9 @@ export const services = [
     ],
     icon: "🌳",
     href: "#services",
+    priceLabel: "Quote on request",
+    rating: 5,
+    servicedCount: 42,
   },
   {
     id: "garden-care",
@@ -188,6 +221,9 @@ export const services = [
     ],
     icon: "🌿",
     href: "#services",
+    priceLabel: "From 1,000 THB / visit",
+    rating: 5,
+    servicedCount: 88,
   },
 ] as const;
 

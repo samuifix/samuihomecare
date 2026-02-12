@@ -369,16 +369,22 @@ export async function getServiceSlugs(): Promise<string[]> {
 
 /** Map fallback services to ServiceCardItem[] for /services/ page when Sanity is not configured */
 function getServicesFallback(): import("./types").ServiceCardItem[] {
-  return fallbackServices.map((s) => ({
-    id: s.id,
-    slug: s.id,
-    title: s.title,
-    short: s.short,
-    points: [...s.points],
-    icon: s.icon,
-    href: s.href,
-    ...("cta" in s && s.cta ? { cta: s.cta } : {}),
-  }));
+  return fallbackServices.map((s) => {
+    const ext = s as { priceLabel?: string; rating?: number; servicedCount?: number };
+    return {
+      id: s.id,
+      slug: s.id,
+      title: s.title,
+      short: s.short,
+      points: [...s.points],
+      icon: s.icon,
+      href: s.href,
+      ...("cta" in s && s.cta ? { cta: s.cta } : {}),
+      priceLabel: ext.priceLabel,
+      rating: typeof ext.rating === "number" ? ext.rating : undefined,
+      servicedCount: typeof ext.servicedCount === "number" ? ext.servicedCount : undefined,
+    };
+  });
 }
 
 /** All services for /services/ page (cards with price, rating, serviced count) */
@@ -418,10 +424,16 @@ export async function getRelatedServices(
   return all.filter((s) => s.slug !== excludeSlug).slice(0, limit);
 }
 
+/** Default overview text when fallback service has no Sanity data */
+const DEFAULT_PRICING = "Contact us for current rates and pricing. We provide free estimates before work starts.";
+const DEFAULT_TRAVEL = "Travel within Koh Samui is included or charged at a fair rate depending on location. We will confirm before your visit.";
+const DEFAULT_TERMS = "Standard terms apply. We guarantee our work and offer after-sales support.";
+
 /** Single service fallback from data.ts when Sanity is not configured */
 function getServiceBySlugFallback(slug: string): import("./types").ServiceSingle | null {
   const s = fallbackServices.find((x) => x.id === slug);
   if (!s) return null;
+  const ext = s as { priceLabel?: string; rating?: number; servicedCount?: number; pricingOverview?: string; travelCostOverview?: string; termsOverview?: string };
   return {
     title: s.title,
     short: s.short,
@@ -429,8 +441,13 @@ function getServiceBySlugFallback(slug: string): import("./types").ServiceSingle
     points: [...s.points],
     icon: s.icon,
     href: s.href,
-    /** Use description as body so "Service details" section is not empty */
     body: s.description,
+    pricingOverview: ext.pricingOverview ?? DEFAULT_PRICING,
+    travelCostOverview: ext.travelCostOverview ?? DEFAULT_TRAVEL,
+    termsOverview: ext.termsOverview ?? DEFAULT_TERMS,
+    priceLabel: ext.priceLabel,
+    rating: typeof ext.rating === "number" ? ext.rating : undefined,
+    servicedCount: typeof ext.servicedCount === "number" ? ext.servicedCount : undefined,
     ...("cta" in s && s.cta ? { cta: s.cta } : {}),
   };
 }
