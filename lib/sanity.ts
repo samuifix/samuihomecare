@@ -429,6 +429,8 @@ function getServiceBySlugFallback(slug: string): import("./types").ServiceSingle
     points: [...s.points],
     icon: s.icon,
     href: s.href,
+    /** Use description as body so "Service details" section is not empty */
+    body: s.description,
     ...("cta" in s && s.cta ? { cta: s.cta } : {}),
   };
 }

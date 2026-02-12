@@ -50,6 +50,14 @@ npm run dev
 
 หลังจากนี้ทุกครั้งที่คุณ **Publish** เอกสารใน Sanity (บทความ, Portfolio, Service ฯลฯ) Sanity จะยิง URL ไปที่ Vercel → Vercel จะ **build และ deploy ใหม่อัตโนมัติ** ไม่ต้องเข้าไปกด Redeploy เองอีก
 
+**เพิ่มบริการ (Service) ใหม่ใน Sanity — หน้ารายละเอียดจะเพิ่มให้อัตโนมัติหรือไม่?**
+
+- **ถ้าตั้งค่า Sanity บน Vercel แล้ว** (มี `NEXT_PUBLIC_SANITY_PROJECT_ID` และ `NEXT_PUBLIC_SANITY_DATASET`):  
+  สร้างบริการใหม่ใน Sanity Studio → ใส่ **slug** (เช่น `pool-repair`) → กด **Publish**  
+  จากนั้นกด **Redeploy** บน Vercel (หรือใช้ Webhook ด้านบน) ตอน build เว็บจะดึง slug ทั้งหมดจาก Sanity รวมตัวใหม่ → **หน้ารายละเอียดบริการจะถูกสร้างให้อัตโนมัติ** ไม่ต้องแก้โค้ด
+- **ถ้ายังไม่ได้ตั้งค่า Sanity บน Vercel:**  
+  เว็บใช้รายการ fallback ในโค้ด — ต้องไปเพิ่ม slug ใหม่ในไฟล์ `app/services/[slug]/page.tsx` ในอาร์เรย์ `FALLBACK_SLUGS` เอง
+
 ---
 
 ### 2. แก้ไขโค้ดหรือดีไซน์เว็บ (เช่น เปลี่ยนสี, เปลี่ยนข้อความในโค้ด, เพิ่ม section)
