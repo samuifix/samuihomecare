@@ -4,17 +4,24 @@ import Link from "next/link";
 import { getPortfolioBySlug, getPortfolioSlugs } from "@/lib/sanity";
 import { BASE_URL, SITE_NAME } from "@/lib/constants";
 
+/** Static fallback when Sanity is unavailable at build (e.g. Vercel without env). Add new slugs here when you add portfolio items. */
+const FALLBACK_SLUGS = [
+  "spa-pool-structure",
+  "steel-roof-installation",
+  "wood-stair-handrail-led",
+  "outdoor-shower-stone-wall",
+];
+
 /**
- * สำหรับ Static Export (output: "export") ต้องบอก Next.js ล่วงหน้าว่ามี path ไหนบ้าง
- * ที่ต้องสร้างเป็น HTML — ดึง slug จริงจาก Sanity หรือ fallback เป็น array ว่าง
+ * สำหรับ Static Export (output: "export") ต้องบอก Next.js ล่วงหน้าว่ามี path ไหนบ้างที่ต้องสร้างเป็น HTML
  */
 export async function generateStaticParams() {
   try {
     const slugs = await getPortfolioSlugs();
-    const list = Array.isArray(slugs) ? slugs : [];
+    const list = Array.isArray(slugs) && slugs.length > 0 ? slugs : FALLBACK_SLUGS;
     return list.map((slug) => ({ slug }));
   } catch {
-    return [];
+    return FALLBACK_SLUGS.map((slug) => ({ slug }));
   }
 }
 
