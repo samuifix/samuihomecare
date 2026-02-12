@@ -5,7 +5,12 @@ import { getPostBySlug } from "@/lib/sanity";
 import { PortableText } from "@/components/PortableText";
 import { BASE_URL, SITE_NAME } from "@/lib/constants";
 
-const FALLBACK_SLUG = "__no-posts";
+/** Fallback slugs when Sanity is not configured — must match POST_SINGLE_FALLBACK in lib/sanity.ts */
+const BLOG_FALLBACK_SLUGS = [
+  "choosing-air-conditioning-koh-samui",
+  "electrical-safety-villa",
+  "home-maintenance-tips-koh-samui",
+];
 
 // Must be first export — required by Next.js for output: "export"
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -13,10 +18,10 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
     const { getPostSlugs } = await import("@/lib/sanity");
     const slugs = await getPostSlugs();
     const list = Array.isArray(slugs) ? slugs.filter((s): s is string => typeof s === "string" && s.length > 0) : [];
-    if (list.length === 0) return [{ slug: FALLBACK_SLUG }];
+    if (list.length === 0) return BLOG_FALLBACK_SLUGS.map((slug) => ({ slug }));
     return list.map((slug) => ({ slug }));
   } catch {
-    return [{ slug: FALLBACK_SLUG }];
+    return BLOG_FALLBACK_SLUGS.map((slug) => ({ slug }));
   }
 }
 
@@ -95,7 +100,6 @@ function BlogPostJsonLd({
 
 export default async function BlogSinglePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  if (slug === FALLBACK_SLUG) notFound();
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 

@@ -446,10 +446,10 @@ export async function getServiceBySlug(slug: string): Promise<import("./types").
         ...(process.env.NODE_ENV === "development" ? { cache: "no-store" as RequestCache } : { next: { revalidate: 60 } }),
       }
     );
-    if (!res.ok) return null;
+    if (!res.ok) return getServiceBySlugFallback(slug);
     const json = await res.json();
     const r = json.result as Record<string, unknown> | null;
-    if (!r || !r.title) return null;
+    if (!r || !r.title) return getServiceBySlugFallback(slug);
     return {
       title: String(r.title),
       short: String(r.short ?? ""),
@@ -585,10 +585,10 @@ export async function getPostBySlug(slug: string): Promise<import("./types").Pos
         ...(process.env.NODE_ENV === "development" ? { cache: "no-store" as RequestCache } : { next: { revalidate: 60 } }),
       }
     );
-    if (!res.ok) return null;
+    if (!res.ok) return POST_SINGLE_FALLBACK[slug] ?? null;
     const json = await res.json();
     const r = json.result as Record<string, unknown> | null;
-    if (!r || !r.title) return null;
+    if (!r || !r.title) return POST_SINGLE_FALLBACK[slug] ?? null;
     return {
       title: String(r.title),
       excerpt: (r.excerpt as string) ?? null,
