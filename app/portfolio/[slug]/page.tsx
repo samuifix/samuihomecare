@@ -4,9 +4,18 @@ import Link from "next/link";
 import { getPortfolioBySlug, getPortfolioSlugs } from "@/lib/sanity";
 import { BASE_URL, SITE_NAME } from "@/lib/constants";
 
+/**
+ * สำหรับ Static Export (output: "export") ต้องบอก Next.js ล่วงหน้าว่ามี path ไหนบ้าง
+ * ที่ต้องสร้างเป็น HTML — ดึง slug จริงจาก Sanity หรือ fallback เป็น array ว่าง
+ */
 export async function generateStaticParams() {
-  const slugs = await getPortfolioSlugs();
-  return slugs.map((slug) => ({ slug }));
+  try {
+    const slugs = await getPortfolioSlugs();
+    const list = Array.isArray(slugs) ? slugs : [];
+    return list.map((slug) => ({ slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
