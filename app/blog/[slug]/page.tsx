@@ -10,6 +10,7 @@ const BLOG_FALLBACK_SLUGS = [
   "choosing-air-conditioning-koh-samui",
   "electrical-safety-villa",
   "home-maintenance-tips-koh-samui",
+  "Secure Your Investment: Professional Raft Foundation Construction in Koh Samui",
 ];
 
 // Must be first export — required by Next.js for output: "export"
@@ -24,9 +25,6 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
     return BLOG_FALLBACK_SLUGS.map((slug) => ({ slug }));
   }
 }
-
-// Allow on-demand rendering for slugs not pre-built (e.g. new posts or when Sanity was unavailable at build)
-export const dynamicParams = true;
 
 export async function generateMetadata({
   params,

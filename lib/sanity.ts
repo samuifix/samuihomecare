@@ -590,6 +590,11 @@ const POST_SINGLE_FALLBACK: Record<string, import("./types").PostSingle> = {
   "choosing-air-conditioning-koh-samui": { title: "Choosing Air Conditioning on Koh Samui", excerpt: null, publishedAt: null },
   "electrical-safety-villa": { title: "Electrical Safety for Your Villa", excerpt: null, publishedAt: null },
   "home-maintenance-tips-koh-samui": { title: "Home Maintenance Tips for Koh Samui", excerpt: null, publishedAt: null },
+  "Secure Your Investment: Professional Raft Foundation Construction in Koh Samui": {
+    title: "Secure Your Investment: Professional Raft Foundation Construction in Koh Samui",
+    excerpt: null,
+    publishedAt: null,
+  },
 };
 
 /** List of posts for blog index */
