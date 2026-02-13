@@ -595,6 +595,11 @@ const POST_SINGLE_FALLBACK: Record<string, import("./types").PostSingle> = {
     excerpt: null,
     publishedAt: null,
   },
+  "ProfessionalConstruction in Koh Samui": {
+    title: "Professional Construction in Koh Samui",
+    excerpt: null,
+    publishedAt: null,
+  },
 };
 
 /** List of posts for blog index */

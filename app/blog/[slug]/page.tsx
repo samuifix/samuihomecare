@@ -11,6 +11,7 @@ const BLOG_FALLBACK_SLUGS = [
   "electrical-safety-villa",
   "home-maintenance-tips-koh-samui",
   "Secure Your Investment: Professional Raft Foundation Construction in Koh Samui",
+  "ProfessionalConstruction in Koh Samui",
 ];
 
 // Must be first export — required by Next.js for output: "export"
