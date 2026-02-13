@@ -10,6 +10,7 @@
     "seed:sanity": "dotenv -e .env.local -- node scripts/seed-sanity.cjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
