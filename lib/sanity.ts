@@ -146,15 +146,16 @@ const portfolioBySlugQuery = `*[_type == "portfolioItem" && (slug == $slug || _i
   review
 }`;
 
-const postSlugsQuery = `*[_type == "post"].slug`;
-const postsListQuery = `*[_type == "post"] | order(publishedAt desc, _createdAt desc) {
+// เฉพาะบทความที่ Publish แล้ว (ไม่รวม draft)
+const postSlugsQuery = `*[_type == "post" && !(_id in path("drafts.**"))].slug`;
+const postsListQuery = `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc, _createdAt desc) {
   slug,
   title,
   excerpt,
   publishedAt,
   "coverImageUrl": coverImage.asset->url
 }`;
-const postBySlugQuery = `*[_type == "post" && slug == $slug][0] {
+const postBySlugQuery = `*[_type == "post" && !(_id in path("drafts.**")) && slug == $slug][0] {
   title,
   excerpt,
   publishedAt,

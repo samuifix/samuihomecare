@@ -39,6 +39,22 @@ npm run dev
 
 ถ้าไม่ได้ตั้งค่า env ของ Sanity บน Vercel โค้ดจะใช้รายการ fallback ในไฟล์แทน (ต้องไปเพิ่ม slug เองในโค้ดถ้ามีของใหม่)
 
+**ทำไมบทความใหม่ที่พึ่ง Publish บน Sanity ไม่มีในเว็บ (แม้จะ Redeploy แล้ว)?**
+
+มักเกิดจากหนึ่งในสองอย่างนี้:
+
+1. **Vercel ไม่ได้ดึงข้อมูลจาก Sanity ตอน build**  
+   ไปที่ **Vercel** → โปรเจกต์ → **Settings** → **Environment Variables** ตรวจว่า:
+   - มี **NEXT_PUBLIC_SANITY_PROJECT_ID** = Project ID จาก [manage.sanity.io](https://manage.sanity.io) (โปรเจกต์เดียวกับที่เปิด Studio ที่ localhost:3333)
+   - มี **NEXT_PUBLIC_SANITY_DATASET** = `production` (หรือ dataset ที่ Studio ใช้)
+   - ถ้าไม่มีหรือผิด → เพิ่ม/แก้แล้ว **Save** จากนั้นไปที่ **Deployments** → กด **⋯** ที่ deployment ล่าสุด → **Redeploy** → เลือก **Redeploy without cache**
+
+2. **Redeploy ใช้ cache เก่า**  
+   ถ้ากดแค่ **Redeploy** (ไม่ล้าง cache) บางครั้ง build จะใช้ข้อมูล Sanity เก่าที่ cache ไว้  
+   → ใช้ **Redeploy without cache** (หรือ "Clear cache and redeploy") ทุกครั้งที่ต้องการให้บทความ/เนื้อหาใหม่โผล่
+
+หลังแก้แล้วลอง Redeploy without cache อีกครั้ง แล้วรอ build จบแล้วไปดูหน้า /blog/ และลิงก์บทความใหม่
+
 **ทำไมอัปเดตรูป/เนื้อหาใน Portfolio (หรือบทความ, Service) บน Sanity แล้วเว็บไม่อัปเดท?**
 
 เพราะ Vercel จะ build ใหม่ก็ต่อเมื่อมี **การ deploy** เท่านั้น การกด Publish ใน Sanity ไม่ได้สั่งให้ Vercel ทำอะไรเอง คุณต้องทำอย่างใดอย่างหนึ่ง:

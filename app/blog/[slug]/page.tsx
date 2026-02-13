@@ -25,7 +25,8 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }
 }
 
-export const dynamic = "force-static";
+// Allow on-demand rendering for slugs not pre-built (e.g. new posts or when Sanity was unavailable at build)
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
