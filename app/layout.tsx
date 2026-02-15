@@ -66,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: (seo?.robots as Metadata["robots"]) ?? "index, follow",
     alternates: { canonical: baseUrl },
     verification: {
-      google: "P0SeN1wqKIwJyAzMGcHGVsq7urBg5XufRD_Y15AIeAU",
+      google: "9oj9NCTRbLJCl1NQxaAQQaJk6z5eGwQMzkj7b3bRiOc",
     },
   };
 }
