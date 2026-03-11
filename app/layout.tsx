@@ -70,6 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
       google: [
         "9oj9NCTRbLJCl1NQxaAQQaJk6z5eGwQMzkj7b3bRiOc",
         "googlee68b21ceb2946209",
+        "RBcELZZBdlF4ZRuPZcRU8fmjMyGj9g6PSngZE2YTQ4A",
       ],
     },
   };
