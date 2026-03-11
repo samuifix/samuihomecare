@@ -5,6 +5,7 @@ import { getPageData, getSeo } from "@/lib/sanity";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
+import Script from "next/script";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -66,7 +67,10 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: (seo?.robots as Metadata["robots"]) ?? "index, follow",
     alternates: { canonical: baseUrl },
     verification: {
-      google: "9oj9NCTRbLJCl1NQxaAQQaJk6z5eGwQMzkj7b3bRiOc",
+      google: [
+        "9oj9NCTRbLJCl1NQxaAQQaJk6z5eGwQMzkj7b3bRiOc",
+        "googlee68b21ceb2946209",
+      ],
     },
   };
 }
@@ -101,7 +105,30 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={dmSans.variable}>
+      <head>
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-TGRKKZTG');
+            `,
+          }}
+        />
+      </head>
       <body className="antialiased min-h-screen flex flex-col">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TGRKKZTG"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <JsonLd site={site} />
         <Header site={site} />
         <main className="flex-1">{children}</main>
