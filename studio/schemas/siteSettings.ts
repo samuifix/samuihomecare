@@ -18,6 +18,18 @@ export const siteSettings = defineType({
     defineField({ name: "areas", title: "Service areas", type: "string", description: "e.g. Chaweng, Bophut, Lamai" }),
     defineField({ name: "hours", title: "Hours", type: "string", description: "e.g. 24 hours, every day" }),
     defineField({
+      name: "gtmId",
+      title: "Google Tag Manager ID",
+      type: "string",
+      description: "e.g. GTM-XXXXXXX (เว้นว่างไว้หากไม่ต้องการใช้งาน)",
+    }),
+    defineField({
+      name: "gaId",
+      title: "Google Analytics 4 ID",
+      type: "string",
+      description: "e.g. G-XXXXXXXXXX (เว้นว่างไว้หากไม่ต้องการใช้งาน)",
+    }),
+    defineField({
       name: "servicesSectionTitle",
       title: "หัวข้อส่วนบริการ (หน้าเว็บ)",
       type: "string",
