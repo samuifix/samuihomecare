@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   turbopack: { root: process.cwd() },
   images: {
     remotePatterns: [
