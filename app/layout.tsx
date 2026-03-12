@@ -20,7 +20,7 @@ export const viewport: Viewport = {
   themeColor: "#0d9488",
 };
 
-const defaultBaseUrl = "https://samuihomecare.com";
+const defaultBaseUrl = "https://samuihomecare.com/";
 const defaultTitle = "Samui Construction — Repair & Maintenance on Koh Samui";
 const defaultDescription =
   "Full-service home repair and maintenance on Koh Samui. Electrical, plumbing, AC, construction, renovation & cleaning. 24/7 service. 5+ years experience.";

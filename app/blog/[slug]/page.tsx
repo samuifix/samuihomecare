@@ -36,8 +36,8 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Not found" };
 
-  const path = `/blog/${slug}`;
-  const canonical = `${BASE_URL}${path}`;
+  const path = `/blog/${slug}/`;
+  const canonical = `${BASE_URL.replace(/\/$/, "")}${path}`;
   const description = post.excerpt || undefined;
   const ogImages = post.coverImageUrl
     ? [{ url: post.coverImageUrl, width: 1200, height: 630, alt: post.title }]
