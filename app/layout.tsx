@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -135,6 +136,7 @@ export default async function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer site={site} />
         <FloatingContact site={site} />
+        <SpeedInsights />
       </body>
     </html>
   );
